@@ -1,0 +1,18 @@
+{
+	"project": {
+		"name": "TaiVex",
+		"slot": 3,
+		"description": "78181A Genesis",
+		"platform": "V5",
+		"creationDate": "Sat, 12 Oct 2024 04:38:04 GMT",
+		"language": "cpp",
+		"sdkVersion": "V5_20240223_11_00_00",
+		"cpp": {
+			"includePath": []
+		}
+	},
+	"extension": {
+		"version": "0.6.0",
+		"json": 1
+	}
+}
