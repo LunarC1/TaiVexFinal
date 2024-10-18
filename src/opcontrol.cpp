@@ -70,7 +70,6 @@ void temperature() {
 //   controller.rumble(".");
 // }
 
-
 void opcontrol() {
 
   //kills autonomous tasks
@@ -101,42 +100,39 @@ void opcontrol() {
 
   //   //auton();
 
-  // //drivetrain initialization
+  //drivetrain initialization
 
-  //   leftMotors.setStopping(true);
-  //   rightMotors.setStopping(true);
+    leftMotors.setStopping(true);
+    rightMotors.setStopping(true);
+    int A1, A3;
+    while (1)
+    {
 
-  // while (1) {
+      // track system time
 
-  //   //track system time
+      uint64_t timestamp = vex::timer::systemHighResolution();
 
-  //     uint64_t timestamp = vex::timer::systemHighResolution();
+    //drivetrain code
 
-  //   //drivetrain code
+    //  if (!hanging) (!reverseDrive) ? chassis.controllerFeedbackSpin() : chassis.controllerFeedbackSpin(true);
 
-  //    if (!hanging) (!reverseDrive) ? chassis.controllerFeedbackSpin() : chassis.controllerFeedbackSpin(true);
+     A1 = controller.Axis1.value();
+     A3 = controller.Axis3.value();
 
-  //   //intake code
+     chassis.spinTank(A3 + A1, A3 - A1);
 
-  //     if (controller.ButtonL1.pressing()) intakeMtrs.spin(12);
-  //     else if (controller.ButtonL2.pressing()) intakeMtrs.spin(-12);
-  //     else intakeMtrs.stop();
-      
-  //   //catapult code
+     (controller.ButtonR2.pressing()) ? stick.set(true) : stick.set(false);
+     (controller.ButtonL2.pressing()) ? lift.set(true) : lift.set(false);
+     (controller.ButtonDown.pressing()) ? pisstake.set(true) : pisstake.set(false);
+     (controller.ButtonY.pressing()) ? mogo.set(true) : mogo.set(false);
+     (controller.ButtonRight.pressing()) ? redirect.set(true) : redirect.set(false);
 
-  //     (controller.ButtonL2.pressing()) ? cata.release() : cata.reset();
+    //intake code
 
-  //   //wings code
+      if (controller.ButtonL1.pressing()) intakeMtrs.spin(12);
+      else if (controller.ButtonR1.pressing()) intakeMtrs.spin(-12);
+      else intakeMtrs.stop();
 
-  //     if (!reverseDrive) {
-  //       (controller.ButtonR1.pressing()) ? frontWings.on() : frontWings.off();
-  //       (controller.ButtonR2.pressing()) ? backWings.on() : backWings.off();
-  //     }
-  //     else {
-  //       (controller.ButtonR1.pressing()) ? backWings.on() : backWings.off();
-  //       (controller.ButtonR2.pressing()) ? frontWings.on() : frontWings.off();
-  //     }
-
-  //   wait((timestamp + 11000.0 - vex::timer::systemHighResolution()) / 1000.0, vex::msec);
-  // }
+    wait((timestamp + 11000.0 - vex::timer::systemHighResolution()) / 1000.0, vex::msec);
+    }
 }

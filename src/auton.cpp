@@ -113,11 +113,11 @@ void initialize() {
 
   drivetrain.setStopping(vex::brake);
 
-  motion.setUnit(foot);
-  // motion.setUnit(inch);
+  // motion.setUnit(foot);
+  motion.setUnit(inch);
   motion.setPursuitSettings(1, 1, 0.2, 0.4, 0, 5);
-  odometry.setUnit(foot);
-  // odometry.setUnit(inch);
+  // odometry.setUnit(foot);
+  odometry.setUnit(inch);
 
   odometry.setPos(0, 0);
   taskHandler(false);
@@ -475,26 +475,29 @@ void initialize() {
 // }
 
 
+void test(){
+  odometry.setUnit(inch);
+  motion.setUnit(inch);
+  odometry.setPos(0, 0);
+  imu.setRotation(45, vex::deg);
+  motion.movePose(24, 24, 90, 0.6, 0, 60, 127, 2500, 1, true, false);
+}
+
 void auton() {
   //main body of all autonomous functions
 
   initialize();
 
   //Path test(testPath);
-  odometry.setUnit(inch);
-  motion.setUnit(inch);
-  odometry.setPos(0, 0);
-  imu.setRotation(45, vex::deg);
-  motion.movePose(24, 24, 90, 0.6, 0, 60, 127, 2500, 1, true, false);
 
-  //motion.moveDist(3, 1, 2000);
-  //leftAWP();
-  //leftElims();
-  //topMidR6();
-  // botMidR6();
-  //skills();
-  //skillsMacro();
-
+  test();
+  // motion.moveDist(3, 1, 2000);
+  // leftAWP();
+  // leftElims();
+  // topMidR6();
+  //  botMidR6();
+  // skills();
+  // skillsMacro();
 
   //motion.followAPS(test, 30000, 0.8, 10);
 }
